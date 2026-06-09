@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 基础：暗色 + 等宽数字 */
+@layer base {
+  html, body, #root { height: 100%; }
+  body {
+    @apply bg-ink-950 text-slate-200 font-sans antialiased;
+    background-image:
+      radial-gradient(1200px 800px at 80% -10%, rgba(123,107,255,0.10), transparent 60%),
+      radial-gradient(900px 600px at -10% 100%, rgba(34,211,238,0.06), transparent 60%);
+  }
+  /* 等宽数字 */
+  .num { font-variant-numeric: tabular-nums; font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  /* 网格背景（极淡） */
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(123,107,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(123,107,255,0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+/* 组件：卡片 */
+@layer components {
+  .card {
+    @apply relative rounded-xl border border-white/5 bg-ink-800/70 backdrop-blur-sm
+           hover:border-plasma-400/40 transition-all duration-300;
+  }
+  .card-glow {
+    @apply card;
+    box-shadow: 0 0 0 1px rgba(123,107,255,0.0), 0 8px 30px -10px rgba(123,107,255,0.20);
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-md
+           text-[11px] font-mono uppercase tracking-wider
+           border border-white/10 bg-white/5 text-slate-300;
+  }
+  .chip-urgent { @apply chip border-heat-7/50 bg-heat-7/15 text-red-300; }
+  .chip-high   { @apply chip border-heat-6/50 bg-heat-6/10 text-orange-300; }
+  .chip-medium { @apply chip border-heat-4/50 bg-heat-4/10 text-yellow-300; }
+  .chip-low    { @apply chip border-heat-2/40 bg-heat-2/10 text-cyan-300; }
+
+  .btn {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-md
+           text-sm font-medium border border-white/10 bg-white/5
+           hover:bg-white/10 hover:border-white/20 transition-colors
+           cursor-pointer;
+  }
+  .btn-primary {
+    @apply btn border-plasma-400/40 bg-plasma-500/15 text-plasma-400
+           hover:bg-plasma-500/25 hover:border-plasma-400/60;
+  }
+
+  .heat-bar {
+    @apply h-1 rounded-full;
+    background: linear-gradient(90deg, theme('colors.heat.1') 0%, theme('colors.heat.2') 25%, theme('colors.heat.3') 50%, theme('colors.heat.4') 70%, theme('colors.heat.5') 85%, theme('colors.heat.6') 100%);
+  }
+}
+
+/* 滚动条 */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: rgba(123,107,255,0.3); border-radius: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
