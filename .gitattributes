@@ -1,0 +1,7 @@
+# GitHub Linguist 自定义
+# 把 .jsx 单独归为 React
+*.jsx linguist-language=React
+# 明确标记
+*.js linguist-detectable=true
+*.css linguist-detectable=true
+*.html linguist-detectable=true
