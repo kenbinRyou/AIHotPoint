@@ -9,6 +9,12 @@ import { itemsRouter } from './routes/items.js';
 import { searchRouter } from './routes/search.js';
 import { keywordsRouter } from './routes/keywords.js';
 import { crawlRouter } from './routes/crawl.js';
+import { storiesRouter } from './routes/stories.js';
+import { dailyRouter } from './routes/daily.js';
+import { topicsRouter } from './routes/topics.js';
+import { feedbackRouter } from './routes/feedback.js';
+import { weeklyRouter, monthlyRouter } from './routes/reports.js';
+import { feedRouter } from './routes/feed.js';
 
 migrate();
 const app = express();
@@ -29,6 +35,13 @@ app.use('/api/items', itemsRouter);
 app.use('/api/search', searchRouter);
 app.use('/api/keywords', keywordsRouter);
 app.use('/api/crawl', crawlRouter);
+app.use('/api/stories', storiesRouter);
+app.use('/api/daily', dailyRouter);
+app.use('/api/topics', topicsRouter);
+app.use('/api/feedback', feedbackRouter);
+app.use('/api/weekly', weeklyRouter);
+app.use('/api/monthly', monthlyRouter);
+app.use('/', feedRouter);
 
 // 统一错误兜底
 app.use((err, _req, res, _next) => {

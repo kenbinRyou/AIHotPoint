@@ -1,50 +1,57 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Noto Sans SC"', '"Inter"', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', '"Fira Code"', 'ui-monospace', 'monospace'],
-        display: ['"Space Grotesk"', '"Noto Sans SC"', 'sans-serif'],
+        sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', '"PingFang SC"', '"Hiragino Sans GB"', '"HarmonyOS Sans SC"', '"Microsoft YaHei"', 'sans-serif'],
+        mono: ['ui-monospace', 'SFMono-Regular', '"SF Mono"', 'Menlo', 'Consolas', 'monospace'],
       },
       colors: {
-        // Cyberpunk Editorial 调色板
+        // AIHOT 编辑风调色板（对齐 aihot.virxact.com），浅/深主题经 CSS 变量切换
+        paper: {
+          0: 'var(--bg-0)', // 页面背景
+          1: 'var(--bg-1)', // 次级背景 / 日期条
+          2: 'var(--bg-2)', // 分割线 / 边框
+        },
         ink: {
-          950: '#05060A',  // 背景最深
-          900: '#0A0C14',  // 主背景
-          800: '#10131D',  // 卡片背景
-          700: '#171A26',
-          600: '#1F2333',
+          900: 'var(--text-0)', // 主文字
+          700: 'var(--text-1)', // 次级文字
+          500: 'var(--text-2)', // 弱文字
+          300: 'var(--text-3)',
         },
-        plasma: {
-          400: '#7A6BFF',
-          500: '#5B4DE8',
-          600: '#4338CA',
+        teal: {
+          600: 'var(--accent)',      // 主强调色
+          500: 'var(--accent)',      // 兼容旧引用
+          700: 'var(--accent-hover)',
+          100: 'var(--accent-ghost)',
         },
+        card: 'var(--card)',
+        // 热度色阶（热点榜）
         heat: {
-          1: '#3B82F6',   // cold blue
-          2: '#22D3EE',   // cyan
-          3: '#A3E635',   // lime
-          4: '#FACC15',   // yellow
-          5: '#FB923C',   // orange
-          6: '#EF4444',   // hot red
-          7: '#B91C1C',   // urgent
+          1: '#3b82f6',
+          2: '#22d3ee',
+          3: '#a3e635',
+          4: '#facc15',
+          5: '#fb923c',
+          6: '#ef4444',
+          7: '#b91c1c',
         },
+      },
+      borderRadius: {
+        card: '12px',
+        panel: '16px',
       },
       keyframes: {
-        'pulse-fast': { '0%,100%': { opacity: '1' }, '50%': { opacity: '.4' } },
-        'slide-in': { '0%': { transform: 'translateX(20px)', opacity: '0' }, '100%': { transform: 'translateX(0)', opacity: '1' } },
-        'scan': { '0%': { backgroundPosition: '0% 0%' }, '100%': { backgroundPosition: '0% 100%' } },
-        'shimmer': { '0%': { backgroundPosition: '-200% 0' }, '100%': { backgroundPosition: '200% 0' } },
-        'glow': { '0%,100%': { boxShadow: '0 0 8px rgba(123,107,255,0.4)' }, '50%': { boxShadow: '0 0 16px rgba(123,107,255,0.8)' } },
+        'slide-in': { '0%': { transform: 'translateY(6px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
+        'fade-in': { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+        'pulse-dot': { '0%,100%': { opacity: '1' }, '50%': { opacity: '.35' } },
       },
       animation: {
-        'pulse-fast': 'pulse-fast 1.2s ease-in-out infinite',
         'slide-in': 'slide-in 240ms ease-out',
-        'scan': 'scan 4s linear infinite',
-        'shimmer': 'shimmer 2.4s linear infinite',
-        'glow': 'glow 2.4s ease-in-out infinite',
+        'fade-in': 'fade-in 200ms ease-out',
+        'pulse-dot': 'pulse-dot 1.6s ease-in-out infinite',
       },
     },
   },

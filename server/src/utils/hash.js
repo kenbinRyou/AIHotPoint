@@ -40,6 +40,7 @@ export function timeRangeToSince(range) {
     '1h': 60 * 60 * 1000,
     '6h': 6 * 60 * 60 * 1000,
     '24h': 24 * 60 * 60 * 1000,
+    '48h': 48 * 60 * 60 * 1000,
     '7d': 7 * 24 * 60 * 60 * 1000,
   };
   const ms = map[range];

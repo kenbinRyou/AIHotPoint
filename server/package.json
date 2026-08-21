@@ -10,14 +10,15 @@
     "migrate": "node src/db/migrate.js"
   },
   "dependencies": {
-    "express": "^4.19.2",
-    "cors": "^2.8.5",
-    "better-sqlite3": "^11.3.0",
-    "node-cron": "^3.0.3",
-    "dotenv": "^16.4.5",
     "axios": "^1.7.7",
+    "better-sqlite3": "^11.10.0",
     "cheerio": "^1.0.0",
-    "openai": "^4.67.0"
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "node-cron": "^3.0.3",
+    "openai": "^4.67.0",
+    "rss-parser": "^3.13.0"
   },
   "devDependencies": {
     "supertest": "^7.0.0"

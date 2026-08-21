@@ -32,7 +32,7 @@ searchRouter.post('/', async (req, res) => {
   }));
 
   // 合并所有 items
-  const merged = perSource.flatMap((r) => r.items || []);
+  let merged = perSource.flatMap((r) => r.items || []);
 
   // 可选：对结果做 AI 分析（按需）
   if (analyze && process.env.ENABLE_AI_ANALYZE !== 'false') {
@@ -49,6 +49,16 @@ searchRouter.post('/', async (req, res) => {
       logger.warn(`analyze in search failed: ${e.message}`, 'search');
     }
   }
+
+  // 过滤为 AI 相关内容（项目定位：只关注 AI 领域；AI 分析出的关键词也可作为判定依据）
+  const { isAiRelated } = await import('../utils/ai-relevance.js');
+  merged = merged.filter((it) =>
+    isAiRelated(it) || (it.ai?.is_ai === true) ||
+    (it.ai?.keywords?.length && isAiRelated({ title: it.title, keywords: it.ai.keywords })),
+  );
+  perSource.forEach((p) => {
+    p.items = (p.items || []).filter((it) => merged.some((m) => m.url === it.url && m.source === it.source));
+  });
 
   res.json({
     code: 0,
